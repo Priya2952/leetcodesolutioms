@@ -1,0 +1,17 @@
+public class fibnocci {
+	
+	public static void main (String[] args) {
+		int n = 50;
+		
+		System.out.println(fibnocci(n));
+	}
+
+	 static long fibnocci(int n) {
+		 if(n<=1) {
+			 return n;
+		 }
+		 
+		 return(fibnocci(n-1)+ fibnocci(n-2));
+	}
+
+}
