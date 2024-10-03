@@ -1,0 +1,24 @@
+public class Solution {
+    public void reverseString(char[] s) {
+        int left = 0;                    // Initialize the left pointer
+        int right = s.length - 1;       // Initialize the right pointer
+
+        while (left < right) {
+            // Swap characters at the left and right pointers
+            char temp = s[left];         // Store the left character
+            s[left] = s[right];          // Replace left character with right character
+            s[right] = temp;             // Replace right character with stored left character
+            
+            // Move the pointers towards the center
+            left++;
+            right--;
+        }
+    }
+
+    public static void main(String[] args) {
+        Solution solution = new Solution();
+        char[] s = {'h', 'e', 'l', 'l', 'o'};
+        solution.reverseString(s);
+        System.out.println(s);  // Outputs: [o, l, l, e, h]
+    }
+}
