@@ -1,0 +1,30 @@
+class Solution {
+    public static boolean isPalindrome(int x) {
+        
+  
+        // Negative numbers are not palindromes
+        if (x < 0) {
+            return false;
+        }
+
+        // Reverse the integer and compare with the original
+        int original = x;
+        int reversed = 0;
+
+        while (x != 0) {
+            int remainder = x % 10;
+            reversed = reversed * 10 + remainder;
+            x /= 10;
+        }
+
+        // If the reversed number is equal to the original, it's a palindrome
+        return original == reversed;
+    }
+
+    public static void main(String[] args) {
+        // Test cases
+        System.out.println(isPalindrome(121));  // true
+        System.out.println(isPalindrome(-121)); // false
+        System.out.println(isPalindrome(10));   // false
+    }
+}
