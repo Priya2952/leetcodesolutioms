@@ -1,0 +1,30 @@
+public class fibo2 {
+	private static long[] fibonaccicache;
+	
+	
+	public static void main(String[] args) {
+		int n = 100;
+		
+		fibonaccicache = new long[n+1];
+		
+		for(int i = 0;i<=n;i++) {
+			System.out.print(fibonacci(i)+ " ");
+		}
+		
+	}
+	
+	static long fibonacci(int n) {
+		if(n<=1) {
+			return n;
+			
+		}
+		
+		if(fibonaccicache[n] != 0) {
+			return fibonaccicache[n];
+		}
+		
+		fibonaccicache[n] = (fibonacci(n-1) + fibonacci(n-2));
+		return fibonaccicache[n];
+	}
+
+}
