@@ -1,0 +1,16 @@
+
+public class MissingNumber {
+    public static int findMissingNumber(int[] nums) {
+        // Step 1: Sort the array
+        Arrays.sort(nums);
+
+        // Step 2: Find the missing number
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] != i) {
+                return i;  // The first mismatch between index and value is the missing number
+            }
+        }
+
+        // Step 3: If no mismatch is found, the missing number is n
+        return nums.length;
+    }
