@@ -1,0 +1,25 @@
+import java.util.*;
+
+public class Solution {
+    public int thirdMax(int[] nums) {
+        // Create a TreeSet which automatically stores elements in sorted order and ensures uniqueness
+        TreeSet<Integer> set = new TreeSet<>();
+        
+        // Add each number to the TreeSet, duplicates will be ignored
+        for (int num : nums) {
+            set.add(num);
+            // If the size of the set exceeds 3, remove the smallest element
+            if (set.size() > 3) {
+                set.pollFirst();
+            }
+        }
+        
+        // If the set has 3 elements, return the smallest of the largest 3 (which is the third maximum)
+        if (set.size() == 3) {
+            return set.first(); // Smallest of the top 3 distinct values
+        }
+        
+        // If less than 3 distinct numbers, return the largest number
+        return set.last();
+    }
+}
