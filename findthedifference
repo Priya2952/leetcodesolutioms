@@ -1,0 +1,23 @@
+ public char findTheDifference(String s, String t) {
+        // Create an array to store character frequencies (26 letters in lowercase)
+        int[] count = new int[26];
+        
+        // Count frequencies in string 's'
+        for (char c : s.toCharArray()) {
+            count[c - 'a']++;
+        }
+        
+        // Subtract frequencies based on string 't'
+        for (char c : t.toCharArray()) {
+            count[c - 'a']--;
+            
+            // If the frequency goes negative, that means this is the extra character
+            if (count[c - 'a'] < 0) {
+                return c;
+            }
+        }
+        
+        // This return won't be reached but added to satisfy method signature
+        return ' ';
+    }
+}
