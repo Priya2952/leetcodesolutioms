@@ -1,0 +1,39 @@
+import java.util.HashSet;
+
+public class LargestPositiveIntegerWithNegative {
+    public int findMaxK(int[] nums) {
+        // Create a set to store all the elements in the array
+        HashSet<Integer> set = new HashSet<>();
+        
+        // Add all elements to the set
+        for (int num : nums) {
+            set.add(num);
+        }
+        
+        // Initialize the maximum positive integer variable
+        int maxK = -1;
+        
+        // Iterate through the array to find the largest k such that -k also exists
+        for (int num : nums) {
+            if (num > 0 && set.contains(-num)) {
+                maxK = Math.max(maxK, num);
+            }
+        }
+        
+        return maxK;
+    }
+    
+    public static void main(String[] args) {
+        LargestPositiveIntegerWithNegative solution = new LargestPositiveIntegerWithNegative();
+        
+        // Test cases
+        int[] nums1 = {-1, 2, -3, 3};
+        System.out.println(solution.findMaxK(nums1));  // Output: 3
+        
+        int[] nums2 = {-1, 10, 6, 7, -7, 1};
+        System.out.println(solution.findMaxK(nums2));  // Output: 7
+        
+        int[] nums3 = {-10, 8, 6, 7, -2, -3};
+        System.out.println(solution.findMaxK(nums3));  // Output: -1
+    }
+}
