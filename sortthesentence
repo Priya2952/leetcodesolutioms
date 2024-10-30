@@ -1,0 +1,34 @@
+import java.util.Arrays;
+
+public class ReconstructSentence {
+    public String originalSentence(String s) {
+        // Split the input sentence into words
+        String[] words = s.split(" ");
+        
+        // Create an array to hold the original positions
+        String[] original = new String[words.length];
+        
+        // Loop through each word
+        for (String word : words) {
+            // Extract the position (last character)
+            int pos = Character.getNumericValue(word.charAt(word.length() - 1)) - 1; // Convert to 0-index
+            // Extract the actual word (without the position)
+            String actualWord = word.substring(0, word.length() - 1);
+            // Place the actual word in its original position
+            original[pos] = actualWord;
+        }
+        
+        // Join the words to form the reconstructed sentence
+        return String.join(" ", original);
+    }
+
+    public static void main(String[] args) {
+        ReconstructSentence solution = new ReconstructSentence();
+        
+        String input1 = "is2 sentence4 This1 a3";
+        System.out.println(solution.originalSentence(input1)); // Output: "This is a sentence"
+
+        String input2 = "Myself2 Me1 I4 and3";
+        System.out.println(solution.originalSentence(input2)); // Output: "Me Myself and I"
+    }
+}
