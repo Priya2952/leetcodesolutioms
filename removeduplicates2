@@ -1,0 +1,25 @@
+class Solution {
+    public int removeDuplicates(int[] nums) {
+        if (nums.length == 0) {
+            return 0; // No elements to process
+        }
+
+        int i = 1; // Pointer to track the position of the next unique element
+        int count = 1; // Counter to track occurrences of the current number
+
+        for (int j = 1; j < nums.length; j++) {
+            if (nums[j] == nums[j - 1]) {
+                count++; // Increment count if it's the same number
+            } else {
+                count = 1; // Reset count for a new number
+            }
+
+            if (count <= 2) { // Allow at most 2 occurrences
+                nums[i] = nums[j];
+                i++;
+            }
+        }
+
+        return i; // Corrected to return i + 1
+    }
+}
