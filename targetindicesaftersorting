@@ -1,0 +1,18 @@
+class Solution {
+    public List<Integer> targetIndices(int[] nums, int target) {
+        // Step 1: Sort the array in non-decreasing order
+        Arrays.sort(nums);
+        
+        // Step 2: List to store the target indices
+        List<Integer> result = new ArrayList<>();
+        
+        // Step 3: Iterate and find the indices where nums[i] == target
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] == target) {
+                result.add(i); // Add the index to the result list
+            }
+        }
+        
+        // Step 4: Return the result list
+        return result;
+    }
