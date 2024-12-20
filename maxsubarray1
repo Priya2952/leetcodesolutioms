@@ -1,0 +1,31 @@
+class Solution {
+    public int maxSubArray(int[] nums) {
+        int currentSum = 0;
+        int maxSum = Integer.MIN_VALUE;
+        int start = 0, end = 0, tempStart = 0;
+
+        for (int i = 0; i < nums.length; i++) {
+            currentSum += nums[i];
+
+            if (currentSum > maxSum) {
+                maxSum = currentSum;
+                start = tempStart; // Update the start of the max subarray
+                end = i;           // Update the end of the max subarray
+            }
+
+            if (currentSum < 0) {
+                currentSum = 0;   // Reset current sum
+                tempStart = i + 1; // Update the temporary start for the next subarray
+            }
+        }
+
+        // To print the subarray
+        System.out.println("Maximum Subarray: ");
+        for (int i = start; i <= end; i++) {
+            System.out.print(nums[i] + " ");
+        }
+        System.out.println();
+
+        return maxSum;
+    }
+}
