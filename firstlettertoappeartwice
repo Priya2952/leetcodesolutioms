@@ -1,0 +1,24 @@
+class Solution {
+    public char repeatedCharacter(String s) {
+
+         
+        
+        // Iterate through the string
+       HashSet<Character> seen = new HashSet<>();
+        
+        // Iterate through the string
+        for (char c : s.toCharArray()) {
+            // If we've already seen this character, it's the answer
+            if (seen.contains(c)) {
+                return c;
+            }
+            // Otherwise, add it to the set
+            seen.add(c);
+        }
+        
+        // This line won't be reached because the problem guarantees at least one duplicate
+        throw new IllegalArgumentException("Input string must contain at least one letter that appears twice.");
+    }
+        
+    
+}
