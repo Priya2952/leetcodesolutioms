@@ -1,0 +1,15 @@
+public class SumUsingParameterizedRecursion {
+    public static void findSum(int n, int sum) {
+        if (n == 0) { // Base case
+            System.out.println("Sum: " + sum);
+            return;
+        }
+        findSum(n - 1, sum + n); // Recursive call with updated sum
+    }
+
+    public static void main(String[] args) {
+        int n = 5; // Example input
+        findSum(n, 0); // Start with sum = 0
+    }
+}
+
