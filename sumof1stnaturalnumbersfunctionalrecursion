@@ -1,0 +1,14 @@
+public class SumUsingFunctionalRecursion {
+    public static int findSum(int n) {
+        if (n == 0) { // Base case
+            return 0;
+        }
+        return n + findSum(n - 1); // Recursive call and return the sum
+    }
+
+    public static void main(String[] args) {
+        int n = 5; // Example input
+        int result = findSum(n); // Get the result of the recursive function
+        System.out.println("Sum: " + result);
+    }
+}
