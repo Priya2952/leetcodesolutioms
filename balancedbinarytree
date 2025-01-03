@@ -1,0 +1,36 @@
+public class Solution {
+    public boolean isBalanced(TreeNode root) {
+        // Call the helper function that calculates height and checks balance
+        return checkHeight(root) != -1;
+    }
+
+    // Helper function to calculate height and check balance
+    private int checkHeight(TreeNode root) {
+        // Base case: if the node is null, the height is 0
+        if (root == null) {
+            return 0;
+        }
+
+        // Check the height of the left subtree
+        int leftHeight = checkHeight(root.left);
+        // If the left subtree is unbalanced, return -1
+        if (leftHeight == -1) {
+            return -1;
+        }
+
+        // Check the height of the right subtree
+        int rightHeight = checkHeight(root.right);
+        // If the right subtree is unbalanced, return -1
+        if (rightHeight == -1) {
+            return -1;
+        }
+
+        // If the height difference between left and right subtree is more than 1, return -1
+        if (Math.abs(leftHeight - rightHeight) > 1) {
+            return -1;
+        }
+
+        // Return the height of the current node, which is the max height of left and right subtree + 1
+        return Math.max(leftHeight, rightHeight) + 1;
+    }
+}
