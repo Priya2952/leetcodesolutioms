@@ -1,0 +1,21 @@
+class Solution {
+    public List<List<String>> groupAnagrams(String[] strs) {
+         // Map to group words by their sorted character representation
+        Map<String, List<String>> anagramMap = new HashMap<>();
+        
+        for (String str : strs) {
+            // Sort the characters of the string to create a key
+            char[] charArray = str.toCharArray();
+            Arrays.sort(charArray);
+            String sortedKey = new String(charArray);
+            
+            // Add the original string to the corresponding anagram group
+            anagramMap.putIfAbsent(sortedKey, new ArrayList<>());
+            anagramMap.get(sortedKey).add(str);
+        }
+        
+        // Convert the map values into a list of lists
+        return new ArrayList<>(anagramMap.values());
+    }
+    
+}
