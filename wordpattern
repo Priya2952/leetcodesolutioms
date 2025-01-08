@@ -1,0 +1,41 @@
+class Solution { 
+    public boolean wordPattern(String pattern, String s) {
+        String[] words = s.split(" ");
+        
+        // Check if lengths match
+        if (pattern.length() != words.length) {
+            return false;
+        }
+
+        // Create hashmaps for bijection
+        HashMap<Character, String> charToword = new HashMap<>();
+        HashMap<String, Character> wordTochar = new HashMap<>();
+
+        // Loop through pattern and words
+        for (int i = 0; i < pattern.length(); i++) {
+            char c = pattern.charAt(i);
+            String word = words[i];
+
+            // Check and update charToWord mapping
+            if (charToword.containsKey(c)) {
+                if (!charToword.get(c).equals(word)) {
+                    return false;
+                }
+            } else {
+                charToword.put(c, word);
+            }
+
+            // Check and update wordToChar mapping
+            if (wordTochar.containsKey(word)) {
+                if (wordTochar.get(word) != c) {
+                    return false;
+                }
+            } else {
+                wordTochar.put(word, c);
+            }
+        }
+
+        // If all checks pass, return true
+        return true;
+    }
+}
