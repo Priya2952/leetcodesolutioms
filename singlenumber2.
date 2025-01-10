@@ -1,0 +1,27 @@
+class Solution {
+    public int singleNumber(int[] nums) {
+        // Array to count bits at each position
+        int[] bitCounts = new int[32];
+        
+        // Count the bits for all numbers in nums
+        for (int num : nums) {
+            for (int i = 0; i < 32; i++) {
+                // Increment bit count for the i-th bit if it is set
+                if ((num & (1 << i)) != 0) {
+                    bitCounts[i]++;
+                }
+            }
+        }
+        
+        int result = 0;
+        // Rebuild the single number from bits that are not multiple of 3
+        for (int i = 0; i < 32; i++) {
+            // If the bit count is not a multiple of 3, set that bit in the result
+            if (bitCounts[i] % 3 != 0) {
+                result |= (1 << i);
+            }
+        }
+        
+        return result;
+    }
+}
