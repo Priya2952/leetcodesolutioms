@@ -1,0 +1,35 @@
+public class Solution {
+    public int mySqrt(int x) {
+        if (x == 0) return 0; // Edge case for 0
+        
+        int left = 1, right = x;
+        
+        while (left <= right) {
+            int mid = left + (right - left) / 2;
+            
+            // Avoid overflow by checking mid * mid against x
+            if (mid > x / mid) {
+                right = mid - 1;  // mid^2 > x, search in the left half
+            } else {
+                left = mid + 1;  // mid^2 <= x, search in the right half
+            }
+        }
+        
+        // The result is the largest mid where mid^2 <= x
+        return right;
+    }
+
+    public static void main(String[] args) {
+        Solution solution = new Solution();
+
+        // Test cases
+        int x1 = 4;
+        System.out.println(solution.mySqrt(x1));  // Expected: 2
+
+        int x2 = 8;
+        System.out.println(solution.mySqrt(x2));  // Expected: 2
+
+        int x3 = 2147395599;
+        System.out.println(solution.mySqrt(x3));  // Expected: 46339
+    }
+}
