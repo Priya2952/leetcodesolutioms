@@ -1,0 +1,27 @@
+class Solution {
+    static ArrayList<Integer> leaders(int arr[]) {
+        ArrayList<Integer> result = new ArrayList<>();
+        int n = arr.length;
+
+        // Check if the array is empty
+        if (n == 0) {
+            return result; // Return an empty list for an empty array
+        }
+
+        // Initialize the last element as the max
+        int max = arr[n - 1];
+        result.add(max); // The last element is always a leader
+
+        // Traverse the array from the second last element to the first
+        for (int i = n - 2; i >= 0; i--) {
+            if (arr[i] >= max) { // Check if the current element is a leader
+                result.add(arr[i]);
+                max = arr[i]; // Update the max
+            }
+        }
+
+        // Reverse the result to maintain the order of leaders
+        Collections.reverse(result);
+        return result;
+    }
+}
