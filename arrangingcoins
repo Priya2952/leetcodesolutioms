@@ -1,0 +1,22 @@
+class Solution {
+    public int arrangeCoins(int n) {
+               long low = 1, high = n; // Use long to prevent overflow
+        
+        while (low <= high) {
+            long mid = low + (high - low) / 2;  // Avoid overflow
+            long coinsUsed = (mid * (mid + 1)) / 2;  // Sum of first 'mid' rows
+            
+            if (coinsUsed == n) {
+                return (int) mid; // Found exact match
+            } else if (coinsUsed > n) {
+                high = mid - 1; // Too many coins, decrease rows
+            } else {
+                low = mid + 1; // Too few coins, increase rows
+            }
+        }
+        
+        return (int) high; // 'high' will be the last valid row count
+    }
+        
+    
+}
