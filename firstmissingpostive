@@ -1,0 +1,33 @@
+class Solution {
+    public int firstMissingPositive(int[] nums) {
+             int n = nums.length;
+        int i = 0;
+        
+        // Step 1: Cyclic Sort (place numbers in correct positions)
+        while (i < n) {
+            int correctIndex = nums[i] - 1;
+            if (nums[i] > 0 && nums[i] <= n && nums[i] != nums[correctIndex]) {
+                swap(nums, i, correctIndex);
+            } else {
+                i++;
+            }
+        }
+
+        // Step 2: Find the first missing positive number
+        for (i = 0; i < n; i++) {
+            if (nums[i] != i + 1) {
+                return i + 1;  // Return the first missing positive integer
+            }
+        }
+
+        // Step 3: If all numbers from 1 to n are present, return n + 1
+        return n + 1;
+    }
+
+    private static void swap(int[] nums, int i, int j) {
+        int temp = nums[i];
+        nums[i] = nums[j];
+        nums[j] = temp;
+    }
+    
+}
