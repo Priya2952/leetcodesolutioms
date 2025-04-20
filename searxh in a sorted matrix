@@ -1,0 +1,35 @@
+class Solution {
+    public boolean searchMatrix(int[][] matrix, int target) {
+        int n = matrix.length;    // Number of rows
+        int m = matrix[0].length; // Number of columns
+        
+        // We will apply binary search in a flattened 1D array representation of the matrix.
+        int low = 0;
+        int high = n * m - 1; // The last index in the virtual 1D array
+        
+        while (low <= high) {
+            int mid = low + (high - low) / 2;
+            
+            // Find the row and column for the mid index in the virtual 1D array
+            int row = mid / m;     // Row number
+            int col = mid % m;     // Column number
+            
+            // Compare the element at matrix[row][col] with the target
+            if (matrix[row][col] == target) {
+                return true;
+            }
+            
+            // If target is smaller, search in the left half
+            if (matrix[row][col] > target) {
+                high = mid - 1;
+            }
+            // If target is larger, search in the right half
+            else {
+                low = mid + 1;
+            }
+        }
+        
+        // Target is not found
+        return false;
+    }
+}
