@@ -1,0 +1,27 @@
+class Solution {
+    public int kthFactor(int n, int k) {
+         List<Integer> small = new ArrayList<>();
+        List<Integer> large = new ArrayList<>();
+
+        for (int i = 1; i * i <= n; i++) {
+            if (n % i == 0) {
+                small.add(i);
+                if (i != n / i) {
+                    large.add(n / i);
+                }
+            }
+        }
+
+        // Combine both lists to get factors in ascending order
+        small.addAll(reverse(large));
+        
+        // Check if k-th factor exists
+        return k <= small.size() ? small.get(k - 1) : -1;
+    }
+
+    private List<Integer> reverse(List<Integer> list) {
+        Collections.reverse(list);
+        return list;
+    
+    }
+}
