@@ -1,0 +1,40 @@
+// User function Template for Java
+class Solution {
+    public int rowWithMax1s(int arr[][]) {
+        int n = arr.length;
+        int m = arr[0].length;
+
+        int maxRowIndex = -1;
+        int maxOnes = 0;
+
+        for (int i = 0; i < n; i++) {
+            int firstOneIndex = firstOne(arr[i]);
+            int onesCount = m - firstOneIndex;
+
+            if (firstOneIndex != m && onesCount > maxOnes) {
+                maxOnes = onesCount;
+                maxRowIndex = i;
+            }
+        }
+
+        return maxOnes == 0 ? -1 : maxRowIndex;
+    }
+
+    // Binary search to find index of first 1 in a sorted binary array
+    private int firstOne(int[] row) {
+        int low = 0, high = row.length - 1;
+        int result = row.length; // default to length (means no 1 found)
+
+        while (low <= high) {
+            int mid = low + (high - low) / 2;
+            if (row[mid] == 1) {
+                result = mid;
+                high = mid - 1; // search left side
+            } else {
+                low = mid + 1;
+            }
+        }
+
+        return result;
+    }
+}
